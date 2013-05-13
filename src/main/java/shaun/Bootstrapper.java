@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class Bootstrapper {
     public static void main(String[] args) throws Exception{
-        if (args.length != 1){
+        /*if (args.length != 1){
             System.err.println("Needed a path to .htpasswd file");
             System.exit(0);
         }else{
@@ -24,7 +24,7 @@ public class Bootstrapper {
             System.out.println("Reading .htpasswd file from path: " + path);
             HtpasswdParser parser = new HtpasswdParser();
             List<User> users = parser.parse(path);
-        }
+        }*/
         startJettyServer();
     }
 

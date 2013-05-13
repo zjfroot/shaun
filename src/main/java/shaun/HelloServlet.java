@@ -14,7 +14,7 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public class HelloServlet extends HttpServlet {
-    private String greeting="Hello World";
+    private String greeting="Subversion user self service";
     public HelloServlet(){}
     public HelloServlet(String greeting)
     {
@@ -22,9 +22,16 @@ public class HelloServlet extends HttpServlet {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        String form = "<form>\n" +
+                "User name: <input type=\"text\" name=\"firstname\"><br>\n" +
+                "Password: <input type=\"password\" name=\"lastname\">\n" +
+                "<input type=\"submit\" value=\"Login\">\n" +
+                "</form>";
+
         response.setContentType("text/html");
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().println("<h1>"+greeting+"</h1>");
+        response.getWriter().println(form);
         response.getWriter().println("session=" + request.getSession(true).getId());
     }
 }
