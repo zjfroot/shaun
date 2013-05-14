@@ -19,11 +19,6 @@ import java.io.IOException;
  */
 public class LoginServlet extends HttpServlet {
     private String greeting="Subversion user self service";
-    public LoginServlet(){}
-    public LoginServlet(String greeting)
-    {
-        this.greeting=greeting;
-    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -56,11 +51,11 @@ public class LoginServlet extends HttpServlet {
         HtpasswdParser parser = new HtpasswdParser();
         String hash = parser.parse().get(username);
 
-        if(PasswordVerifier.verify(hash, password)){
-            req.getSession().setAttribute("user", new User(username, hash));
+        if(hash != null && PasswordVerifier.verify(hash, password)){
+            req.getSession().setAttribute("user", new User(username));
             resp.sendRedirect("/shaun");
         } else {
-            System.err.println("Authentication failed.");
+            System.err.println("Authentication failed for user "+username);
             resp.sendRedirect("/");
         }
     }

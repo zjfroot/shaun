@@ -23,6 +23,10 @@ public class HtpasswdFileHolder {
         return htpasswdFile;
     }
 
+    public static String getPath(){
+        return path;
+    }
+
     public static File reload(){
         htpasswdFile = new File(path);
         return htpasswdFile;
