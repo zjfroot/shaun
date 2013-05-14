@@ -23,6 +23,16 @@
         <url-pattern>/shaun</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>logoutServlet</servlet-name>
+        <servlet-class>shaun.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>logoutServlet</servlet-name>
+        <url-pattern>/logout/*</url-pattern>
+    </servlet-mapping>
+
     <!--<filter>
         <filter-name>loginFilter</filter-name>
         <filter-class>shaun.filter.LoginFilter</filter-class>
