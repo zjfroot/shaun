@@ -20,18 +20,41 @@ public class HelloServlet extends HttpServlet {
     {
         this.greeting=greeting;
     }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String form = "<form>\n" +
-                "User name: <input type=\"text\" name=\"firstname\"><br>\n" +
-                "Password: <input type=\"password\" name=\"lastname\">\n" +
-                "<input type=\"submit\" value=\"Login\">\n" +
-                "</form>";
+        if(request.getSession().getAttribute("user") == null){
+            String form = "<pre><form method=\"post\">\n" +
+                    "User name: <input type=\"text\" name=\"username\"><br>\n" +
+                    " Password: <input type=\"password\" name=\"password\">" +
+                    // "<input type=\"hidden\" name=\"from\" value=\""+ request.getRequestURI() +"\">"+
+                    "<input type=\"submit\" value=\"Login\">\n" +
+                    "</form></pre>";
 
-        response.setContentType("text/html");
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().println("<h1>"+greeting+"</h1>");
-        response.getWriter().println(form);
-        response.getWriter().println("session=" + request.getSession(true).getId());
+            response.setContentType("text/html");
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.getWriter().println("<h1>" + greeting + "</h1>");
+            response.getWriter().println(form);
+            response.getWriter().println("session=" + request.getSession(true).getId());
+        }else{
+            response.sendRedirect("/shaun");
+        }
+
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String password = req.getParameter("password");
+        System.out.println(password);
+
+        if(PasswordVerifier.verify("$apr1$RO......$WdRRJyNKCHsYa4rpv4DQL1",password)){
+            req.getSession().setAttribute("user", new User("jifzh", "$apr1$RO......$WdRRJyNKCHsYa4rpv4DQL1"));
+            resp.sendRedirect("/shaun");
+        } else {
+            System.err.println("Authentication failed.");
+            resp.sendRedirect("/");
+        }
     }
 }
