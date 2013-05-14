@@ -1,5 +1,7 @@
-package shaun;
+package shaun.servlet;
 
+import shaun.util.PasswordVerifier;
+import shaun.model.User;
 import shaun.util.HtpasswdParser;
 
 import javax.servlet.ServletException;
@@ -54,7 +56,7 @@ public class LoginServlet extends HttpServlet {
         HtpasswdParser parser = new HtpasswdParser();
         String hash = parser.parse().get(username);
 
-        if(PasswordVerifier.verify(hash,password)){
+        if(PasswordVerifier.verify(hash, password)){
             req.getSession().setAttribute("user", new User(username, hash));
             resp.sendRedirect("/shaun");
         } else {

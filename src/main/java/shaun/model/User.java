@@ -1,4 +1,4 @@
-package shaun;
+package shaun.model;
 
 /**
  * Created with IntelliJ IDEA.

@@ -1,4 +1,4 @@
-package shaun;
+package shaun.util;
 
 import arlut.csd.crypto.MD5Crypt;
 

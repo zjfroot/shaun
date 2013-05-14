@@ -1,4 +1,4 @@
-package shaun;
+package shaun.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
