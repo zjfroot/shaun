@@ -26,6 +26,8 @@ public class SelfServiceServlet extends HttpServlet {
 
             response.setContentType("text/html");
             response.setStatus(HttpServletResponse.SC_OK);
+            User user = (User)request.getSession().getAttribute("user");
+            response.getWriter().println("Welcome! "+user.getUsername());
             response.getWriter().println(form);
             response.getWriter().println("session=" + request.getSession(true).getId());
         }

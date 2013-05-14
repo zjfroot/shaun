@@ -1,5 +1,7 @@
 package shaun;
 
+import shaun.util.HtpasswdParser;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,11 +48,14 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String username = req.getParameter("username");
         String password = req.getParameter("password");
-        System.out.println(password);
 
-        if(PasswordVerifier.verify("$apr1$RO......$WdRRJyNKCHsYa4rpv4DQL1",password)){
-            req.getSession().setAttribute("user", new User("jifzh", "$apr1$RO......$WdRRJyNKCHsYa4rpv4DQL1"));
+        HtpasswdParser parser = new HtpasswdParser();
+        String hash = parser.parse().get(username);
+
+        if(PasswordVerifier.verify(hash,password)){
+            req.getSession().setAttribute("user", new User(username, hash));
             resp.sendRedirect("/shaun");
         } else {
             System.err.println("Authentication failed.");

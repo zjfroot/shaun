@@ -4,6 +4,7 @@ import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
+import shaun.util.HtpasswdFileHolder;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,16 +15,19 @@ import org.eclipse.jetty.webapp.WebAppContext;
  */
 public class Bootstrapper {
     public static void main(String[] args) throws Exception{
-        /*if (args.length != 1){
+        handleArgs(args);
+        startJettyServerWebAppExploded();
+    }
+
+    private static void handleArgs(String[] args) {
+        if (args.length != 1){
             System.err.println("Needed a path to .htpasswd file");
             System.exit(0);
         }else{
-            String path = args [1];
-            System.out.println("Reading .htpasswd file from path: " + path);
-            HtpasswdParser parser = new HtpasswdParser();
-            List<User> users = parser.parse(path);
-        }*/
-        startJettyServerWebAppExploded();
+            String path = args [0];
+            System.out.println("Setting .htpasswd path to: " + path);
+            HtpasswdFileHolder.setFile(path);
+        }
     }
 
     private static void startJettyServerWithHelloServlet() throws Exception {
