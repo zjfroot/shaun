@@ -20,7 +20,7 @@ public class Bootstrapper {
         startJettyServerWebAppExploded();
     }
 
-    private static void handleArgs(String[] args) {
+    public static void handleArgs(String[] args) {
         if (args.length != 1){
             System.err.println("Needed a path to .htpasswd file");
             System.exit(0);
