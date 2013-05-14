@@ -5,7 +5,7 @@
 
     <servlet>
         <servlet-name>loginServlet</servlet-name>
-        <servlet-class>shaun.HelloServlet</servlet-class>
+        <servlet-class>shaun.LoginServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

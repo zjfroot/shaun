@@ -13,10 +13,10 @@ import java.io.IOException;
  * Time: 5:17 PM
  * To change this template use File | Settings | File Templates.
  */
-public class HelloServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
     private String greeting="Subversion user self service";
-    public HelloServlet(){}
-    public HelloServlet(String greeting)
+    public LoginServlet(){}
+    public LoginServlet(String greeting)
     {
         this.greeting=greeting;
     }

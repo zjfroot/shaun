@@ -30,7 +30,7 @@ public class Bootstrapper {
         Server server = new Server(8080);
         ServletContextHandler servletContextHandler = new ServletContextHandler(server, "/", true, false);
         server.setHandler(servletContextHandler);
-        servletContextHandler.addServlet(new ServletHolder(new HelloServlet()),"/*");
+        servletContextHandler.addServlet(new ServletHolder(new LoginServlet()),"/*");
         server.start();
         server.join();
     }
